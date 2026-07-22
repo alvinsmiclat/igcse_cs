@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade 10 Computer Science Revision Quest</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --blue: #2563eb;
+      --cyan: #06b6d4;
+      --green: #16a34a;
+      --red: #dc2626;
+      --amber: #f59e0b;
+      --bg: #eef4ff;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #dbe5f3;
+      --shadow: 0 18px 45px rgba(15, 42, 67, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.18), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(6,182,212,.16), transparent 34%),
+        var(--bg);
+    }
+
+    button, input { font: inherit; }
+
+    .shell {
+      width: min(1040px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 10px 24px rgba(37,99,235,.28);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+      line-height: 1.15;
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .sound-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.9);
+      color: var(--navy);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(15,42,67,.08);
+    }
+
+    .game-card {
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: clamp(24px, 5vw, 48px);
+      background:
+        linear-gradient(135deg, rgba(16,42,67,.97), rgba(37,99,235,.92)),
+        #102a43;
+      color: white;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.2);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 16px 0 10px;
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      line-height: .98;
+      letter-spacing: -.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 650px;
+      color: rgba(255,255,255,.84);
+      line-height: 1.65;
+    }
+
+    .start-panel {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 22px;
+    }
+
+    .start-panel label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .start-panel input {
+      width: 100%;
+      border: 0;
+      outline: none;
+      border-radius: 12px;
+      padding: 13px 14px;
+      margin-bottom: 12px;
+      background: white;
+      color: var(--text);
+    }
+
+    .primary-btn, .secondary-btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    .primary-btn {
+      width: 100%;
+      color: white;
+      background: linear-gradient(135deg, var(--amber), #fb7185);
+      box-shadow: 0 12px 24px rgba(245,158,11,.28);
+    }
+
+    .secondary-btn {
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    }
+
+    .primary-btn:hover, .secondary-btn:hover { transform: translateY(-2px); }
+    .primary-btn:disabled, .secondary-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: #f8fbff;
+    }
+
+    .feature strong { display: block; margin-bottom: 4px; color: var(--navy); }
+    .feature span { color: var(--muted); font-size: .9rem; line-height: 1.45; }
+
+    .game-area { display: none; padding: clamp(18px, 4vw, 36px); }
+
+    .hud {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .progress-wrap {
+      min-width: 0;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 12px;
+      border-radius: 999px;
+      background: #e7eef8;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transition: width .35s ease;
+    }
+
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 12px;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .question-card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(20px, 4vw, 34px);
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+
+    .topic-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .topic-tag, .difficulty-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .topic-tag { color: #1d4ed8; background: #dbeafe; }
+    .difficulty-tag { color: #92400e; background: #fef3c7; }
+
+    .question-card h3 {
+      margin: 0 0 22px;
+      font-size: clamp(1.25rem, 3vw, 1.8rem);
+      line-height: 1.35;
+      color: var(--navy);
+    }
+
+    .code {
+      display: block;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .95rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .answer-btn {
+      position: relative;
+      text-align: left;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: white;
+      color: var(--text);
+      padding: 15px 16px 15px 48px;
+      min-height: 64px;
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      line-height: 1.4;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #93c5fd;
+      background: #f8fbff;
+    }
+
+    .answer-letter {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: #eaf2ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: .8rem;
+    }
+
+    .answer-btn.correct {
+      border-color: #86efac;
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .answer-btn.wrong {
+      border-color: #fca5a5;
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 16px;
+      line-height: 1.55;
+    }
+
+    .feedback.good { display: block; background: #ecfdf5; border: 1px solid #a7f3d0; color: #166534; }
+    .feedback.bad { display: block; background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; }
+
+    .feedback strong { display: block; margin-bottom: 4px; }
+
+    .question-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .results { display: none; padding: clamp(24px, 5vw, 48px); text-align: center; }
+
+    .trophy {
+      width: 88px;
+      height: 88px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #fde68a, #fb7185);
+      font-size: 42px;
+      box-shadow: 0 14px 30px rgba(251,113,133,.22);
+    }
+
+    .results h2 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); color: var(--navy); }
+    .results p { color: var(--muted); }
+
+    .score-ring {
+      width: 170px;
+      height: 170px;
+      margin: 26px auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--blue) 0deg, var(--blue) 0deg, #e9eff7 0deg);
+      position: relative;
+    }
+
+    .score-ring::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .score-ring span {
+      position: relative;
+      z-index: 1;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 650px;
+      margin: 0 auto 24px;
+    }
+
+    .summary-box {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      background: #f8fbff;
+    }
+
+    .summary-box strong { display: block; font-size: 1.3rem; color: var(--navy); }
+    .summary-box span { color: var(--muted); font-size: .85rem; }
+
+    .review {
+      margin: 24px auto 0;
+      text-align: left;
+      max-width: 800px;
+    }
+
+    .review h3 { color: var(--navy); }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .review-item strong { display: block; margin-bottom: 5px; }
+    .review-item span { color: var(--muted); font-size: .92rem; line-height: 1.45; }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid, .features, .answers, .summary-grid { grid-template-columns: 1fr; }
+      .hud { grid-template-columns: 1fr 1fr; }
+      .progress-wrap { grid-column: 1 / -1; }
+      .topbar { align-items: flex-start; }
+      .brand p { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">⌘</div>
+        <div>
+          <h1>Computer Science Revision Quest</h1>
+          <p>Grade 10 • Cambridge IGCSE Computer Science 0478</p>
+        </div>
+      </div>
+      <button class="sound-btn" id="soundBtn" aria-label="Toggle sound" title="Toggle sound">🔊</button>
+    </div>
+
+    <section class="game-card">
+      <div id="startScreen">
+        <div class="hero">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">⚡ 15-question challenge</div>
+              <h2>Level up your CS knowledge.</h2>
+              <p>Race through questions on data representation, transmission, hardware, software, internet technologies, AI, algorithms and programming. Build a streak, earn XP and review every answer.</p>
+            </div>
+            <div class="start-panel">
+              <label for="playerName">Player name</label>
+              <input id="playerName" type="text" maxlength="24" placeholder="Enter your name" autocomplete="off" />
+              <button class="primary-btn" id="startBtn">Start the Quest</button>
+            </div>
+          </div>
+        </div>
+        <div class="features">
+          <div class="feature"><strong>🎯 Mixed topics</strong><span>Questions are spread across the full Grade 10 scheme of work.</span></div>
+          <div class="feature"><strong>🔥 Streak bonus</strong><span>Correct answers in a row earn extra XP.</span></div>
+          <div class="feature"><strong>💡 Instant feedback</strong><span>Each answer includes a clear explanation.</span></div>
+        </div>
+      </div>
+
+      <div class="game-area" id="gameArea">
+        <div class="hud">
+          <div class="progress-wrap">
+            <div class="progress-meta"><span id="questionCounter">Question 1 of 15</span><span id="playerLabel">Player</span></div>
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+          </div>
+          <div class="stat-pill">⭐ <span id="scoreText">0 XP</span></div>
+          <div class="stat-pill">🔥 <span id="streakText">0</span></div>
+        </div>
+
+        <article class="question-card">
+          <div class="topic-row">
+            <span class="topic-tag" id="topicTag">Topic</span>
+            <span class="difficulty-tag" id="difficultyTag">Difficulty</span>
+          </div>
+          <h3 id="questionText"></h3>
+          <div class="answers" id="answers"></div>
+          <div class="feedback" id="feedback"></div>
+          <div class="question-actions">
+            <button class="secondary-btn" id="nextBtn" disabled>Next Question →</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="results" id="resultsScreen">
+        <div class="trophy" id="trophyIcon">🏆</div>
+        <h2 id="resultTitle">Quest Complete!</h2>
+        <p id="resultMessage"></p>
+        <div class="score-ring" id="scoreRing"><span id="finalScore">0/15</span></div>
+        <div class="summary-grid">
+          <div class="summary-box"><strong id="finalXp">0</strong><span>Total XP</span></div>
+          <div class="summary-box"><strong id="bestStreak">0</strong><span>Best streak</span></div>
+          <div class="summary-box"><strong id="accuracy">0%</strong><span>Accuracy</span></div>
+        </div>
+        <button class="secondary-btn" id="restartBtn">Play Again</button>
+        <div class="review" id="reviewPanel"></div>
+      </div>
+    </section>
+
+    <div class="footer-note">Designed for classroom revision. Works offline in any modern browser.</div>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        topic: "Data Representation",
+        difficulty: "Easy",
+        question: "Why do computers use binary to represent data?",
+        options: [
+          "Electronic circuits can reliably distinguish between two states",
+          "Binary always uses less storage than hexadecimal",
+          "Humans find binary easier to read than denary",
+          "Binary can only represent numbers"
+        ],
+        answer: 0,
+        explanation: "Digital circuits can represent two stable states, commonly interpreted as 0 and 1. Those bits can then represent numbers, text, sound, images and instructions."
+      },
+      {
+        topic: "Number Systems",
+        difficulty: "Medium",
+        question: "What is the denary value of the binary number 10110110?",
+        options: ["166", "174", "182", "186"],
+        answer: 2,
+        explanation: "10110110₂ = 128 + 32 + 16 + 4 + 2 = 182."
+      },
+      {
+        topic: "Number Systems",
+        difficulty: "Medium",
+        question: "Which hexadecimal value is equivalent to binary 1110 1011?",
+        options: ["DB", "EA", "EB", "F1"],
+        answer: 2,
+        explanation: "Split the binary into nibbles: 1110 = E and 1011 = B, so the answer is EB."
+      },
+      {
+        topic: "Binary Arithmetic",
+        difficulty: "Hard",
+        question: "Two positive 8-bit integers are added: 11100110 + 01011101. What happens?",
+        options: [
+          "The result is 01000011 with no overflow",
+          "The result is 101000011, so overflow occurs",
+          "The result is 11111111, so no overflow occurs",
+          "The calculation is invalid because the second number begins with 0"
+        ],
+        answer: 1,
+        explanation: "230 + 93 = 323, which needs 9 bits (101000011). An 8-bit register cannot store the full result, so overflow occurs."
+      },
+      {
+        topic: "Text, Sound & Images",
+        difficulty: "Medium",
+        question: "Which change will normally increase the quality and file size of a digital sound recording?",
+        options: [
+          "Lower sample rate and lower sample resolution",
+          "Higher sample rate and higher sample resolution",
+          "Lower sample rate and higher compression only",
+          "Replacing Unicode with ASCII"
+        ],
+        answer: 1,
+        explanation: "A higher sample rate captures sound more frequently, and a higher sample resolution stores more precise values. Both usually increase quality and file size."
+      },
+      {
+        topic: "Data Storage & Compression",
+        difficulty: "Easy",
+        question: "Which statement best describes lossless compression?",
+        options: [
+          "Some data is permanently removed",
+          "The original file can be reconstructed exactly",
+          "It is only used for video files",
+          "It always produces a smaller file than lossy compression"
+        ],
+        answer: 1,
+        explanation: "Lossless compression keeps enough information to recreate the original file exactly, making it suitable for text, program files and other data where nothing can be lost."
+      },
+      {
+        topic: "Data Transmission",
+        difficulty: "Medium",
+        question: "What is a main advantage of packet switching?",
+        options: [
+          "Every packet must follow the same route",
+          "A dedicated physical connection is reserved for one user",
+          "Packets can take different routes and share network capacity",
+          "No addressing information is needed"
+        ],
+        answer: 2,
+        explanation: "Packet switching breaks data into packets that can travel independently across shared network routes before being reassembled at the destination."
+      },
+      {
+        topic: "Error Detection",
+        difficulty: "Medium",
+        question: "Which method sends received data back to the sender so it can be compared with the original?",
+        options: ["Parity check", "Checksum", "Echo check", "Check digit"],
+        answer: 2,
+        explanation: "In an echo check, the receiver sends the data back. The sender compares it with the original and retransmits if necessary."
+      },
+      {
+        topic: "Computer Architecture",
+        difficulty: "Medium",
+        question: "During the fetch–decode–execute cycle, which register stores the address of the next instruction?",
+        options: ["Memory Data Register", "Accumulator", "Program Counter", "Current Instruction Register"],
+        answer: 2,
+        explanation: "The Program Counter (PC) holds the memory address of the next instruction to be fetched."
+      },
+      {
+        topic: "Storage & Networks",
+        difficulty: "Easy",
+        question: "Which device forwards data packets between different networks?",
+        options: ["Router", "Microphone", "Actuator", "Compiler"],
+        answer: 0,
+        explanation: "A router examines destination IP addresses and forwards packets between networks."
+      },
+      {
+        topic: "Software",
+        difficulty: "Medium",
+        question: "Which statement correctly compares a compiler and an interpreter?",
+        options: [
+          "A compiler translates one line at a time during execution",
+          "An interpreter always creates an executable file",
+          "A compiler translates the whole program before execution",
+          "They are both examples of operating systems"
+        ],
+        answer: 2,
+        explanation: "A compiler translates the whole source program before execution, while an interpreter translates and executes code one statement at a time."
+      },
+      {
+        topic: "Internet & Cyber Security",
+        difficulty: "Medium",
+        question: "Why is HTTPS safer than HTTP for transmitting sensitive data?",
+        options: [
+          "HTTPS removes all malware from a device",
+          "HTTPS encrypts communication between the browser and server",
+          "HTTPS prevents users from entering incorrect URLs",
+          "HTTPS stores every website locally"
+        ],
+        answer: 1,
+        explanation: "HTTPS uses encryption to protect data exchanged between a browser and a web server, reducing the risk of interception or alteration."
+      },
+      {
+        topic: "AI & Emerging Technologies",
+        difficulty: "Easy",
+        question: "In an automated system, which component physically changes the environment?",
+        options: ["Sensor", "Actuator", "Microprocessor", "Training data"],
+        answer: 1,
+        explanation: "Sensors collect data, a microprocessor processes it, and an actuator carries out a physical action such as opening a valve or moving a motor."
+      },
+      {
+        topic: "Algorithms",
+        difficulty: "Medium",
+        question: "Which is an example of validation rather than verification?",
+        options: [
+          "Entering an email address twice",
+          "Comparing typed data with the original document",
+          "Checking that an age is between 5 and 18",
+          "Proofreading a printed form"
+        ],
+        answer: 2,
+        explanation: "A range check is validation because it checks whether input is reasonable and meets a rule. Verification checks whether data was copied accurately."
+      },
+      {
+        topic: "Programming",
+        difficulty: "Hard",
+        question: "What is printed by this pseudocode?<span class='code'>Total ← 0\nFOR Count ← 1 TO 4\n    Total ← Total + Count\nNEXT Count\nOUTPUT Total</span>",
+        options: ["4", "6", "10", "16"],
+        answer: 2,
+        explanation: "The loop adds 1 + 2 + 3 + 4, so Total becomes 10. This is an example of totaling using iteration."
+      }
+    ];
+
+    const startScreen = document.getElementById('startScreen');
+    const gameArea = document.getElementById('gameArea');
+    const resultsScreen = document.getElementById('resultsScreen');
+    const startBtn = document.getElementById('startBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const playerNameInput = document.getElementById('playerName');
+    const playerLabel = document.getElementById('playerLabel');
+    const questionCounter = document.getElementById('questionCounter');
+    const progressBar = document.getElementById('progressBar');
+    const topicTag = document.getElementById('topicTag');
+    const difficultyTag = document.getElementById('difficultyTag');
+    const questionText = document.getElementById('questionText');
+    const answers = document.getElementById('answers');
+    const feedback = document.getElementById('feedback');
+    const scoreText = document.getElementById('scoreText');
+    const streakText = document.getElementById('streakText');
+    const soundBtn = document.getElementById('soundBtn');
+
+    let shuffledQuestions = [];
+    let current = 0;
+    let correctCount = 0;
+    let xp = 0;
+    let streak = 0;
+    let maxStreak = 0;
+    let playerName = 'Player';
+    let soundOn = true;
+    let responseLog = [];
+
+    function shuffle(array) {
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function beep(type) {
+      if (!soundOn || !window.AudioContext) return;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = type === 'correct' ? 660 : 220;
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.18);
+    }
+
+    function startGame() {
+      playerName = playerNameInput.value.trim() || 'Player';
+      shuffledQuestions = shuffle(questions);
+      current = 0;
+      correctCount = 0;
+      xp = 0;
+      streak = 0;
+      maxStreak = 0;
+      responseLog = [];
+      playerLabel.textContent = playerName;
+      startScreen.style.display = 'none';
+      resultsScreen.style.display = 'none';
+      gameArea.style.display = 'block';
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = shuffledQuestions[current];
+      questionCounter.textContent = `Question ${current + 1} of ${shuffledQuestions.length}`;
+      progressBar.style.width = `${(current / shuffledQuestions.length) * 100}%`;
+      topicTag.textContent = q.topic;
+      difficultyTag.textContent = q.difficulty;
+      questionText.innerHTML = q.question;
+      answers.innerHTML = '';
+      feedback.className = 'feedback';
+      feedback.innerHTML = '';
+      nextBtn.disabled = true;
+      nextBtn.textContent = current === shuffledQuestions.length - 1 ? 'See Results →' : 'Next Question →';
+
+      const optionOrder = shuffle(q.options.map((text, index) => ({ text, originalIndex: index })));
+      optionOrder.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'answer-btn';
+        btn.innerHTML = `<span class="answer-letter">${String.fromCharCode(65 + index)}</span>${opt.text}`;
+        btn.dataset.originalIndex = opt.originalIndex;
+        btn.addEventListener('click', () => selectAnswer(btn, q));
+        answers.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(selectedButton, q) {
+      const allButtons = [...document.querySelectorAll('.answer-btn')];
+      allButtons.forEach(btn => btn.disabled = true);
+      const selectedIndex = Number(selectedButton.dataset.originalIndex);
+      const isCorrect = selectedIndex === q.answer;
+
+      allButtons.forEach(btn => {
+        if (Number(btn.dataset.originalIndex) === q.answer) btn.classList.add('correct');
+      });
+
+      if (isCorrect) {
+        selectedButton.classList.add('correct');
+        correctCount++;
+        streak++;
+        maxStreak = Math.max(maxStreak, streak);
+        const earned = 100 + Math.min(streak - 1, 5) * 20;
+        xp += earned;
+        feedback.className = 'feedback good';
+        feedback.innerHTML = `<strong>Correct! +${earned} XP</strong>${q.explanation}`;
+        beep('correct');
+      } else {
+        selectedButton.classList.add('wrong');
+        streak = 0;
+        feedback.className = 'feedback bad';
+        feedback.innerHTML = `<strong>Not quite.</strong>${q.explanation}`;
+        beep('wrong');
+      }
+
+      responseLog.push({
+        topic: q.topic,
+        question: q.question.replace(/<[^>]*>/g, ' '),
+        correct: isCorrect,
+        explanation: q.explanation
+      });
+
+      scoreText.textContent = `${xp} XP`;
+      streakText.textContent = streak;
+      progressBar.style.width = `${((current + 1) / shuffledQuestions.length) * 100}%`;
+      nextBtn.disabled = false;
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current < shuffledQuestions.length) renderQuestion();
+      else showResults();
+    }
+
+    function showResults() {
+      gameArea.style.display = 'none';
+      resultsScreen.style.display = 'block';
+      const percent = Math.round((correctCount / shuffledQuestions.length) * 100);
+      document.getElementById('finalScore').textContent = `${correctCount}/${shuffledQuestions.length}`;
+      document.getElementById('finalXp').textContent = xp;
+      document.getElementById('bestStreak').textContent = maxStreak;
+      document.getElementById('accuracy').textContent = `${percent}%`;
+      document.getElementById('scoreRing').style.background = `conic-gradient(var(--blue) ${percent * 3.6}deg, #e9eff7 0deg)`;
+
+      let title, message, icon;
+      if (percent >= 87) {
+        title = 'Outstanding!';
+        message = `${playerName}, you are exam-ready. Your understanding is strong across the syllabus.`;
+        icon = '🏆';
+      } else if (percent >= 67) {
+        title = 'Great Progress!';
+        message = `${playerName}, you have a solid foundation. Review the missed topics and try again for mastery.`;
+        icon = '🚀';
+      } else {
+        title = 'Keep Building!';
+        message = `${playerName}, this attempt showed exactly what to revise next. Study the explanations, then replay.`;
+        icon = '🧠';
+      }
+      document.getElementById('resultTitle').textContent = title;
+      document.getElementById('resultMessage').textContent = message;
+      document.getElementById('trophyIcon').textContent = icon;
+
+      const missed = responseLog.filter(item => !item.correct);
+      const reviewPanel = document.getElementById('reviewPanel');
+      if (missed.length === 0) {
+        reviewPanel.innerHTML = '<h3>Perfect run!</h3><div class="review-item"><strong>You answered every question correctly.</strong><span>Try replaying to test yourself with a different question order.</span></div>';
+      } else {
+        reviewPanel.innerHTML = '<h3>Review your missed questions</h3>' + missed.map(item => `
+          <div class="review-item">
+            <strong>${item.topic}: ${item.question}</strong>
+            <span>${item.explanation}</span>
+          </div>
+        `).join('');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    soundBtn.addEventListener('click', () => {
+      soundOn = !soundOn;
+      soundBtn.textContent = soundOn ? '🔊' : '🔇';
+    });
+    startBtn.addEventListener('click', startGame);
+    nextBtn.addEventListener('click', nextQuestion);
+    restartBtn.addEventListener('click', startGame);
+    playerNameInput.addEventListener('keydown', e => { if (e.key === 'Enter') startGame(); });
+  </script>
+</body>
+</html>
