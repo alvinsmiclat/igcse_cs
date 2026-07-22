@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AS &amp; A Level Computer Science 9618 Revision Quest</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --blue: #2563eb;
+      --cyan: #06b6d4;
+      --green: #16a34a;
+      --red: #dc2626;
+      --amber: #f59e0b;
+      --bg: #eef4ff;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #dbe5f3;
+      --shadow: 0 18px 45px rgba(15, 42, 67, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.18), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(6,182,212,.16), transparent 34%),
+        var(--bg);
+    }
+
+    button, input { font: inherit; }
+
+    .shell {
+      width: min(1040px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 10px 24px rgba(37,99,235,.28);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+      line-height: 1.15;
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .sound-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.9);
+      color: var(--navy);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(15,42,67,.08);
+    }
+
+    .game-card {
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: clamp(24px, 5vw, 48px);
+      background:
+        linear-gradient(135deg, rgba(16,42,67,.97), rgba(37,99,235,.92)),
+        #102a43;
+      color: white;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.2);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 16px 0 10px;
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      line-height: .98;
+      letter-spacing: -.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 650px;
+      color: rgba(255,255,255,.84);
+      line-height: 1.65;
+    }
+
+    .start-panel {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 22px;
+    }
+
+    .start-panel label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .start-panel input {
+      width: 100%;
+      border: 0;
+      outline: none;
+      border-radius: 12px;
+      padding: 13px 14px;
+      margin-bottom: 12px;
+      background: white;
+      color: var(--text);
+    }
+
+    .primary-btn, .secondary-btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    .primary-btn {
+      width: 100%;
+      color: white;
+      background: linear-gradient(135deg, var(--amber), #fb7185);
+      box-shadow: 0 12px 24px rgba(245,158,11,.28);
+    }
+
+    .secondary-btn {
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    }
+
+    .primary-btn:hover, .secondary-btn:hover { transform: translateY(-2px); }
+    .primary-btn:disabled, .secondary-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: #f8fbff;
+    }
+
+    .feature strong { display: block; margin-bottom: 4px; color: var(--navy); }
+    .feature span { color: var(--muted); font-size: .9rem; line-height: 1.45; }
+
+    .game-area { display: none; padding: clamp(18px, 4vw, 36px); }
+
+    .hud {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .progress-wrap {
+      min-width: 0;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 12px;
+      border-radius: 999px;
+      background: #e7eef8;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transition: width .35s ease;
+    }
+
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 12px;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .question-card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(20px, 4vw, 34px);
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+
+    .topic-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .topic-tag, .difficulty-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .topic-tag { color: #1d4ed8; background: #dbeafe; }
+    .difficulty-tag { color: #92400e; background: #fef3c7; }
+
+    .question-card h3 {
+      margin: 0 0 22px;
+      font-size: clamp(1.25rem, 3vw, 1.8rem);
+      line-height: 1.35;
+      color: var(--navy);
+    }
+
+    .code {
+      display: block;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .95rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .answer-btn {
+      position: relative;
+      text-align: left;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: white;
+      color: var(--text);
+      padding: 15px 16px 15px 48px;
+      min-height: 64px;
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      line-height: 1.4;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #93c5fd;
+      background: #f8fbff;
+    }
+
+    .answer-letter {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: #eaf2ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: .8rem;
+    }
+
+    .answer-btn.correct {
+      border-color: #86efac;
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .answer-btn.wrong {
+      border-color: #fca5a5;
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 16px;
+      line-height: 1.55;
+    }
+
+    .feedback.good { display: block; background: #ecfdf5; border: 1px solid #a7f3d0; color: #166534; }
+    .feedback.bad { display: block; background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; }
+
+    .feedback strong { display: block; margin-bottom: 4px; }
+
+    .question-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .results { display: none; padding: clamp(24px, 5vw, 48px); text-align: center; }
+
+    .trophy {
+      width: 88px;
+      height: 88px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #fde68a, #fb7185);
+      font-size: 42px;
+      box-shadow: 0 14px 30px rgba(251,113,133,.22);
+    }
+
+    .results h2 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); color: var(--navy); }
+    .results p { color: var(--muted); }
+
+    .score-ring {
+      width: 170px;
+      height: 170px;
+      margin: 26px auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--blue) 0deg, var(--blue) 0deg, #e9eff7 0deg);
+      position: relative;
+    }
+
+    .score-ring::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .score-ring span {
+      position: relative;
+      z-index: 1;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 650px;
+      margin: 0 auto 24px;
+    }
+
+    .summary-box {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      background: #f8fbff;
+    }
+
+    .summary-box strong { display: block; font-size: 1.3rem; color: var(--navy); }
+    .summary-box span { color: var(--muted); font-size: .85rem; }
+
+    .review {
+      margin: 24px auto 0;
+      text-align: left;
+      max-width: 800px;
+    }
+
+    .review h3 { color: var(--navy); }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .review-item strong { display: block; margin-bottom: 5px; }
+    .review-item span { color: var(--muted); font-size: .92rem; line-height: 1.45; }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid, .features, .answers, .summary-grid { grid-template-columns: 1fr; }
+      .hud { grid-template-columns: 1fr 1fr; }
+      .progress-wrap { grid-column: 1 / -1; }
+      .topbar { align-items: flex-start; }
+      .brand p { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">λ</div>
+        <div>
+          <h1>Computer Science Revision Quest</h1>
+          <p>AS Level • Cambridge International AS &amp; A Level Computer Science 9618</p>
+        </div>
+      </div>
+      <button class="sound-btn" id="soundBtn" aria-label="Toggle sound" title="Toggle sound">🔊</button>
+    </div>
+
+    <section class="game-card">
+      <div id="startScreen">
+        <div class="hero">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">⚡ 24-question challenge</div>
+              <h2>Master the 9618 syllabus.</h2>
+              <p>Race through questions on information representation, communication, hardware, processor fundamentals, system software, security, ethics, databases, algorithms, data structures, programming and software development. Build a streak, earn XP and review every answer.</p>
+            </div>
+            <div class="start-panel">
+              <label for="playerName">Player name</label>
+              <input id="playerName" type="text" maxlength="24" placeholder="Enter your name" autocomplete="off" />
+              <button class="primary-btn" id="startBtn">Start the Quest</button>
+            </div>
+          </div>
+        </div>
+        <div class="features">
+          <div class="feature"><strong>🎯 Full AS syllabus</strong><span>Questions span every chapter in the JC1 scheme of work (papers 1 &amp; 2).</span></div>
+          <div class="feature"><strong>🔥 Streak bonus</strong><span>Correct answers in a row earn extra XP.</span></div>
+          <div class="feature"><strong>💡 Instant feedback</strong><span>Each answer includes a clear explanation.</span></div>
+        </div>
+      </div>
+
+      <div class="game-area" id="gameArea">
+        <div class="hud">
+          <div class="progress-wrap">
+            <div class="progress-meta"><span id="questionCounter">Question 1 of 24</span><span id="playerLabel">Player</span></div>
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+          </div>
+          <div class="stat-pill">⭐ <span id="scoreText">0 XP</span></div>
+          <div class="stat-pill">🔥 <span id="streakText">0</span></div>
+        </div>
+
+        <article class="question-card">
+          <div class="topic-row">
+            <span class="topic-tag" id="topicTag">Topic</span>
+            <span class="difficulty-tag" id="difficultyTag">Difficulty</span>
+          </div>
+          <h3 id="questionText"></h3>
+          <div class="answers" id="answers"></div>
+          <div class="feedback" id="feedback"></div>
+          <div class="question-actions">
+            <button class="secondary-btn" id="nextBtn" disabled>Next Question →</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="results" id="resultsScreen">
+        <div class="trophy" id="trophyIcon">🏆</div>
+        <h2 id="resultTitle">Quest Complete!</h2>
+        <p id="resultMessage"></p>
+        <div class="score-ring" id="scoreRing"><span id="finalScore">0/24</span></div>
+        <div class="summary-grid">
+          <div class="summary-box"><strong id="finalXp">0</strong><span>Total XP</span></div>
+          <div class="summary-box"><strong id="bestStreak">0</strong><span>Best streak</span></div>
+          <div class="summary-box"><strong id="accuracy">0%</strong><span>Accuracy</span></div>
+        </div>
+        <button class="secondary-btn" id="restartBtn">Play Again</button>
+        <div class="review" id="reviewPanel"></div>
+      </div>
+    </section>
+
+    <div class="footer-note">Designed for classroom revision. Works offline in any modern browser.</div>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        topic: "1.1 Data Representation",
+        difficulty: "Medium",
+        question: "How is the denary number 59 represented in Binary Coded Decimal (BCD)?",
+        options: ["0101 1001", "0011 1011", "0101 1011", "1001 0101"],
+        answer: 0,
+        explanation: "BCD encodes each denary digit separately in 4 bits: 5 → 0101 and 9 → 1001, giving 0101 1001. (Pure binary 59 would be 00111011.)"
+      },
+      {
+        topic: "1.1 Data Representation",
+        difficulty: "Easy",
+        question: "What is the denary value of the hexadecimal number 2F?",
+        options: ["45", "47", "79", "31"],
+        answer: 1,
+        explanation: "2F₁₆ = (2 × 16) + 15 = 32 + 15 = 47."
+      },
+      {
+        topic: "1.1 Data Representation",
+        difficulty: "Medium",
+        question: "What is the main advantage of Unicode over ASCII?",
+        options: [
+          "It always uses fewer bits per character",
+          "It can represent characters from many of the world's writing systems",
+          "It compresses text automatically",
+          "It can only store numeric data"
+        ],
+        answer: 1,
+        explanation: "Unicode uses more bits per character than 7/8-bit ASCII, allowing it to represent a far larger character set covering many languages and symbols."
+      },
+      {
+        topic: "1.2 Multimedia",
+        difficulty: "Hard",
+        question: "A bitmap image is 100 × 200 pixels and uses 4 bits per pixel. What is its file size in bytes (ignoring the header)?",
+        options: ["10 000 bytes", "80 000 bytes", "20 000 bytes", "2 500 bytes"],
+        answer: 0,
+        explanation: "File size = width × height × bit depth = 100 × 200 × 4 = 80 000 bits. Dividing by 8 gives 10 000 bytes."
+      },
+      {
+        topic: "1.2 Multimedia",
+        difficulty: "Medium",
+        question: "Which is an advantage of a vector graphic over a bitmap image?",
+        options: [
+          "It can be scaled up without loss of quality",
+          "It always has a smaller file size for photographs",
+          "It stores the colour of every individual pixel",
+          "It cannot be edited once created"
+        ],
+        answer: 0,
+        explanation: "A vector graphic stores drawing objects and properties, so it can be resized without pixelation. Bitmaps store individual pixels and lose quality when enlarged."
+      },
+      {
+        topic: "1.3 Compression",
+        difficulty: "Medium",
+        question: "Run-length encoding (RLE) is an example of which type of compression?",
+        options: ["Lossless", "Lossy", "Encryption", "It is not a form of compression"],
+        answer: 0,
+        explanation: "RLE replaces runs of repeated values with a single value and a count. No data is discarded, so the original can be restored exactly — this is lossless compression."
+      },
+      {
+        topic: "2.1 Networks",
+        difficulty: "Easy",
+        question: "In which network topology does every device connect to a central switch or hub?",
+        options: ["Star", "Bus", "Mesh", "Hybrid"],
+        answer: 0,
+        explanation: "In a star topology each node connects to a central device. If one cable fails only that node is affected, but the central device is a single point of failure."
+      },
+      {
+        topic: "2.1 Networks",
+        difficulty: "Medium",
+        question: "A thin-client device relies most heavily on which of the following?",
+        options: [
+          "Its own local processing power and storage",
+          "A central server for processing and storage",
+          "A peer-to-peer connection with no server",
+          "Having no network connection at all"
+        ],
+        answer: 1,
+        explanation: "A thin client depends on a powerful central server to do most processing and storage. A thick (fat) client performs most tasks using its own resources."
+      },
+      {
+        topic: "2.2 Internet",
+        difficulty: "Easy",
+        question: "What is the role of the Domain Name Service (DNS)?",
+        options: [
+          "To encrypt all web traffic",
+          "To translate a domain name into its IP address",
+          "To store website content permanently",
+          "To assign physical MAC addresses"
+        ],
+        answer: 1,
+        explanation: "DNS resolves human-readable domain names (e.g. example.com) into the numerical IP addresses that computers use to locate servers."
+      },
+      {
+        topic: "2.2 Internet",
+        difficulty: "Medium",
+        question: "Which statement correctly distinguishes the World Wide Web (WWW) from the internet?",
+        options: [
+          "They are exactly the same thing",
+          "The internet is the global network of connected computers; the WWW is a service of linked documents accessed over it",
+          "The WWW is the hardware and the internet is the software",
+          "The internet exists only inside the WWW"
+        ],
+        answer: 1,
+        explanation: "The internet is the worldwide infrastructure of interconnected networks. The WWW is one service that runs on it — a collection of web pages accessed using HTTP/HTTPS."
+      },
+      {
+        topic: "3.1 Hardware",
+        difficulty: "Easy",
+        question: "Which statement about RAM and ROM is correct?",
+        options: [
+          "RAM is non-volatile and ROM is volatile",
+          "RAM is volatile and loses its contents when power is removed",
+          "Both RAM and ROM lose their contents when power is off",
+          "ROM can be freely overwritten during normal running"
+        ],
+        answer: 1,
+        explanation: "RAM is volatile — its contents are lost when power is removed. ROM is non-volatile and typically holds start-up firmware such as the bootstrap."
+      },
+      {
+        topic: "3.1 Hardware",
+        difficulty: "Hard",
+        question: "Which statement is true of DRAM compared with SRAM?",
+        options: [
+          "DRAM must be refreshed periodically and is used for main memory",
+          "DRAM is faster and is used for cache memory",
+          "DRAM never needs to be refreshed",
+          "DRAM stores each bit using a flip-flop"
+        ],
+        answer: 0,
+        explanation: "DRAM stores bits in capacitors that leak charge, so it must be refreshed thousands of times per second. It is cheaper and denser, so it is used for main memory. SRAM uses flip-flops, is faster and is used for cache."
+      },
+      {
+        topic: "3.2 Logic Gates",
+        difficulty: "Medium",
+        question: "A two-input XOR gate outputs 1 when...",
+        options: [
+          "both inputs are 1",
+          "the two inputs are different",
+          "both inputs are 0",
+          "the two inputs are the same"
+        ],
+        answer: 1,
+        explanation: "XOR (exclusive OR) outputs 1 only when its inputs differ (0,1 or 1,0) and 0 when they are the same."
+      },
+      {
+        topic: "4.1 CPU Architecture",
+        difficulty: "Medium",
+        question: "Which bus is bidirectional and carries the actual data being transferred between components?",
+        options: ["Address bus", "Data bus", "Control bus", "System clock"],
+        answer: 1,
+        explanation: "The data bus is bidirectional and carries data to and from the processor. The address bus is unidirectional (carries addresses), and the control bus carries control/timing signals."
+      },
+      {
+        topic: "4.1 CPU Architecture",
+        difficulty: "Medium",
+        question: "Which register holds the address of the memory location to be read from or written to?",
+        options: [
+          "Memory Address Register (MAR)",
+          "Memory Data Register (MDR)",
+          "Accumulator (ACC)",
+          "Program Counter (PC)"
+        ],
+        answer: 0,
+        explanation: "The MAR holds the address to be accessed. The MDR holds the data being transferred, and the PC holds the address of the next instruction."
+      },
+      {
+        topic: "4.1 CPU Architecture",
+        difficulty: "Easy",
+        question: "What is an interrupt?",
+        options: [
+          "A signal that causes the processor to temporarily stop the current task to service a higher-priority event",
+          "A permanent shutdown of the CPU",
+          "A type of secondary storage",
+          "A method of compressing data"
+        ],
+        answer: 0,
+        explanation: "An interrupt is a signal from hardware or software that suspends the current process so the processor can run an interrupt service routine, then resume where it left off."
+      },
+      {
+        topic: "4.2 Assembly Language",
+        difficulty: "Hard",
+        question: "In immediate addressing, the operand given in the instruction is...",
+        options: [
+          "the actual value to be used",
+          "the address of the value in memory",
+          "the address of an address (a pointer)",
+          "an index added to a base address"
+        ],
+        answer: 0,
+        explanation: "Immediate addressing uses the operand itself as the value. Direct addressing gives a memory address, indirect gives the address of an address, and indexed adds an index register to a base."
+      },
+      {
+        topic: "4.3 Bit Manipulation",
+        difficulty: "Hard",
+        question: "A logical shift left by one place is applied to the binary value 00010110. What is the result?",
+        options: ["00101100", "00001011", "10110000", "01011000"],
+        answer: 0,
+        explanation: "Every bit moves one place left and a 0 enters from the right, giving 00101100. A logical shift left by one is equivalent to multiplying by 2 (22 → 44)."
+      },
+      {
+        topic: "5.2 Language Translators",
+        difficulty: "Medium",
+        question: "Which is an advantage of an interpreter over a compiler?",
+        options: [
+          "It produces faster-running executable code",
+          "It makes debugging easier by reporting errors as each line is executed",
+          "It always creates a standalone executable file",
+          "It translates the whole program before it runs"
+        ],
+        answer: 1,
+        explanation: "An interpreter translates and runs one statement at a time, stopping at the first error, which helps during development. A compiler produces faster standalone code but must translate the whole program first."
+      },
+      {
+        topic: "6 Security & Integrity",
+        difficulty: "Medium",
+        question: "Typing a password twice during account setup so the two entries can be compared is an example of...",
+        options: ["verification", "validation", "a range check", "normalisation"],
+        answer: 0,
+        explanation: "Double entry is a verification method — it checks that data was entered accurately. Validation instead checks that data is reasonable and follows defined rules."
+      },
+      {
+        topic: "7.1 Ethics & Ownership",
+        difficulty: "Easy",
+        question: "Open-source software licensing typically allows users to...",
+        options: [
+          "view, modify and redistribute the source code",
+          "use the software only after paying a per-seat fee",
+          "run the software but never see its source code",
+          "use it only for a limited trial period"
+        ],
+        answer: 0,
+        explanation: "Open-source licences grant access to the source code with the freedom to study, modify and share it, usually subject to conditions in the licence."
+      },
+      {
+        topic: "8 Databases",
+        difficulty: "Hard",
+        question: "A relational table is in Third Normal Form (3NF) when it is already in 2NF and...",
+        options: [
+          "it contains repeating groups of data",
+          "no non-key attribute depends on another non-key attribute (no transitive dependencies)",
+          "every attribute is part of the primary key",
+          "it contains no foreign keys"
+        ],
+        answer: 1,
+        explanation: "3NF requires 2NF plus the removal of transitive dependencies — every non-key attribute must depend only on the primary key, not on another non-key attribute."
+      },
+      {
+        topic: "8 Databases (SQL)",
+        difficulty: "Medium",
+        question: "Given the table Student(Name, Age), which SQL statement returns the names of students older than 17?<span class='code'>Table: Student\nName   Age\n-----  ---\nAmir   16\nBella  18\nChen   19</span>",
+        options: [
+          "SELECT Name FROM Student WHERE Age > 17;",
+          "SELECT Age FROM Student;",
+          "CREATE Name FROM Student WHERE Age > 17;",
+          "DELETE Name FROM Student WHERE Age > 17;"
+        ],
+        answer: 0,
+        explanation: "SELECT ... FROM ... WHERE retrieves data (DML). This returns the Name column for rows where Age > 17, i.e. Bella and Chen."
+      },
+      {
+        topic: "8 Databases",
+        difficulty: "Medium",
+        question: "Which SQL command belongs to the Data Definition Language (DDL) rather than the DML?",
+        options: ["CREATE TABLE", "SELECT", "INSERT INTO", "UPDATE"],
+        answer: 0,
+        explanation: "DDL defines or modifies the database structure — e.g. CREATE, ALTER, DROP. SELECT, INSERT and UPDATE manipulate the data itself and are DML."
+      },
+      {
+        topic: "9.1 Computational Thinking",
+        difficulty: "Easy",
+        question: "In computational thinking, abstraction means...",
+        options: [
+          "removing unnecessary detail to focus on the essential features of a problem",
+          "breaking a problem into smaller sub-problems",
+          "testing a program with boundary data",
+          "writing a program in a low-level language"
+        ],
+        answer: 0,
+        explanation: "Abstraction hides or ignores detail that is not needed, leaving a simplified model of the problem. Breaking a problem down is decomposition."
+      },
+      {
+        topic: "10.4 Abstract Data Types",
+        difficulty: "Medium",
+        question: "A stack is best described as which kind of structure?",
+        options: [
+          "Last In, First Out (LIFO)",
+          "First In, First Out (FIFO)",
+          "Random access by index",
+          "Always kept in sorted order"
+        ],
+        answer: 0,
+        explanation: "A stack is LIFO — the last item pushed on is the first popped off. A queue is FIFO."
+      },
+      {
+        topic: "10.2 Arrays",
+        difficulty: "Medium",
+        question: "Using a linear search, how many comparisons are needed in the worst case to search a list of 8 items?",
+        options: ["8", "3", "1", "16"],
+        answer: 0,
+        explanation: "A linear search checks each element in turn, so in the worst case (item last or absent) it makes n = 8 comparisons. A binary search would need only about 3, but requires sorted data."
+      },
+      {
+        topic: "11.2 Constructs",
+        difficulty: "Hard",
+        question: "What is output by this pseudocode?<span class='code'>Sum ← 0\nFOR i ← 1 TO 5\n    IF i MOD 2 = 0 THEN\n        Sum ← Sum + i\n    ENDIF\nNEXT i\nOUTPUT Sum</span>",
+        options: ["6", "9", "15", "2"],
+        answer: 0,
+        explanation: "i MOD 2 = 0 is true only for the even values 2 and 4, so Sum = 2 + 4 = 6."
+      },
+      {
+        topic: "11.3 Structured Programming",
+        difficulty: "Medium",
+        question: "What is the key difference between a function and a procedure?",
+        options: [
+          "A function returns a value; a procedure need not return one",
+          "A procedure must always return a value; a function does not",
+          "Functions cannot take parameters",
+          "Procedures always run faster than functions"
+        ],
+        answer: 0,
+        explanation: "A function returns a single value to the point where it was called (and can be used in an expression). A procedure carries out a task but does not have to return a value."
+      },
+      {
+        topic: "11.3 Structured Programming",
+        difficulty: "Medium",
+        question: "When a parameter is passed by reference...",
+        options: [
+          "changes made inside the subroutine affect the original variable",
+          "a copy of the value is used and the original is unchanged",
+          "the parameter must be a constant",
+          "no data is passed into the subroutine"
+        ],
+        answer: 0,
+        explanation: "Passing by reference gives the subroutine access to the original variable (its address), so any change persists. Passing by value works on a copy, leaving the original unchanged."
+      },
+      {
+        topic: "12.3 Testing & Maintenance",
+        difficulty: "Easy",
+        question: "A program runs to completion but produces the wrong output. This is most likely a...",
+        options: ["logic error", "syntax error", "compilation error", "missing semicolon"],
+        answer: 0,
+        explanation: "A logic error lets the program run but gives incorrect results because the algorithm is wrong. Syntax errors stop the program from translating/running at all."
+      },
+      {
+        topic: "12.3 Testing & Maintenance",
+        difficulty: "Medium",
+        question: "Modifying a working system so it runs on a new operating system is which type of maintenance?",
+        options: ["Adaptive", "Corrective", "Perfective", "Preventive"],
+        answer: 0,
+        explanation: "Adaptive maintenance changes software to keep it working in a new or changed environment. Corrective fixes faults, and perfective improves performance or adds features."
+      }
+    ];
+
+    const startScreen = document.getElementById('startScreen');
+    const gameArea = document.getElementById('gameArea');
+    const resultsScreen = document.getElementById('resultsScreen');
+    const startBtn = document.getElementById('startBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const playerNameInput = document.getElementById('playerName');
+    const playerLabel = document.getElementById('playerLabel');
+    const questionCounter = document.getElementById('questionCounter');
+    const progressBar = document.getElementById('progressBar');
+    const topicTag = document.getElementById('topicTag');
+    const difficultyTag = document.getElementById('difficultyTag');
+    const questionText = document.getElementById('questionText');
+    const answers = document.getElementById('answers');
+    const feedback = document.getElementById('feedback');
+    const scoreText = document.getElementById('scoreText');
+    const streakText = document.getElementById('streakText');
+    const soundBtn = document.getElementById('soundBtn');
+
+    let shuffledQuestions = [];
+    let current = 0;
+    let correctCount = 0;
+    let xp = 0;
+    let streak = 0;
+    let maxStreak = 0;
+    let playerName = 'Player';
+    let soundOn = true;
+    let responseLog = [];
+
+    function shuffle(array) {
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function beep(type) {
+      if (!soundOn || !window.AudioContext) return;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = type === 'correct' ? 660 : 220;
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.18);
+    }
+
+    function startGame() {
+      playerName = playerNameInput.value.trim() || 'Player';
+      shuffledQuestions = shuffle(questions);
+      current = 0;
+      correctCount = 0;
+      xp = 0;
+      streak = 0;
+      maxStreak = 0;
+      responseLog = [];
+      playerLabel.textContent = playerName;
+      startScreen.style.display = 'none';
+      resultsScreen.style.display = 'none';
+      gameArea.style.display = 'block';
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = shuffledQuestions[current];
+      questionCounter.textContent = `Question ${current + 1} of ${shuffledQuestions.length}`;
+      progressBar.style.width = `${(current / shuffledQuestions.length) * 100}%`;
+      topicTag.textContent = q.topic;
+      difficultyTag.textContent = q.difficulty;
+      questionText.innerHTML = q.question;
+      answers.innerHTML = '';
+      feedback.className = 'feedback';
+      feedback.innerHTML = '';
+      nextBtn.disabled = true;
+      nextBtn.textContent = current === shuffledQuestions.length - 1 ? 'See Results →' : 'Next Question →';
+
+      const optionOrder = shuffle(q.options.map((text, index) => ({ text, originalIndex: index })));
+      optionOrder.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'answer-btn';
+        btn.innerHTML = `<span class="answer-letter">${String.fromCharCode(65 + index)}</span>${opt.text}`;
+        btn.dataset.originalIndex = opt.originalIndex;
+        btn.addEventListener('click', () => selectAnswer(btn, q));
+        answers.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(selectedButton, q) {
+      const allButtons = [...document.querySelectorAll('.answer-btn')];
+      allButtons.forEach(btn => btn.disabled = true);
+      const selectedIndex = Number(selectedButton.dataset.originalIndex);
+      const isCorrect = selectedIndex === q.answer;
+
+      allButtons.forEach(btn => {
+        if (Number(btn.dataset.originalIndex) === q.answer) btn.classList.add('correct');
+      });
+
+      if (isCorrect) {
+        selectedButton.classList.add('correct');
+        correctCount++;
+        streak++;
+        maxStreak = Math.max(maxStreak, streak);
+        const earned = 100 + Math.min(streak - 1, 5) * 20;
+        xp += earned;
+        feedback.className = 'feedback good';
+        feedback.innerHTML = `<strong>Correct! +${earned} XP</strong>${q.explanation}`;
+        beep('correct');
+      } else {
+        selectedButton.classList.add('wrong');
+        streak = 0;
+        feedback.className = 'feedback bad';
+        feedback.innerHTML = `<strong>Not quite.</strong>${q.explanation}`;
+        beep('wrong');
+      }
+
+      responseLog.push({
+        topic: q.topic,
+        question: q.question.replace(/<[^>]*>/g, ' '),
+        correct: isCorrect,
+        explanation: q.explanation
+      });
+
+      scoreText.textContent = `${xp} XP`;
+      streakText.textContent = streak;
+      progressBar.style.width = `${((current + 1) / shuffledQuestions.length) * 100}%`;
+      nextBtn.disabled = false;
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current < shuffledQuestions.length) renderQuestion();
+      else showResults();
+    }
+
+    function showResults() {
+      gameArea.style.display = 'none';
+      resultsScreen.style.display = 'block';
+      const percent = Math.round((correctCount / shuffledQuestions.length) * 100);
+      document.getElementById('finalScore').textContent = `${correctCount}/${shuffledQuestions.length}`;
+      document.getElementById('finalXp').textContent = xp;
+      document.getElementById('bestStreak').textContent = maxStreak;
+      document.getElementById('accuracy').textContent = `${percent}%`;
+      document.getElementById('scoreRing').style.background = `conic-gradient(var(--blue) ${percent * 3.6}deg, #e9eff7 0deg)`;
+
+      let title, message, icon;
+      if (percent >= 87) {
+        title = 'Outstanding!';
+        message = `${playerName}, you are exam-ready. Your understanding is strong across the AS syllabus.`;
+        icon = '🏆';
+      } else if (percent >= 67) {
+        title = 'Great Progress!';
+        message = `${playerName}, you have a solid foundation. Review the missed topics and try again for mastery.`;
+        icon = '🚀';
+      } else {
+        title = 'Keep Building!';
+        message = `${playerName}, this attempt showed exactly what to revise next. Study the explanations, then replay.`;
+        icon = '🧠';
+      }
+      document.getElementById('resultTitle').textContent = title;
+      document.getElementById('resultMessage').textContent = message;
+      document.getElementById('trophyIcon').textContent = icon;
+
+      const missed = responseLog.filter(item => !item.correct);
+      const reviewPanel = document.getElementById('reviewPanel');
+      if (missed.length === 0) {
+        reviewPanel.innerHTML = '<h3>Perfect run!</h3><div class="review-item"><strong>You answered every question correctly.</strong><span>Try replaying to test yourself with a different question order.</span></div>';
+      } else {
+        reviewPanel.innerHTML = '<h3>Review your missed questions</h3>' + missed.map(item => `
+          <div class="review-item">
+            <strong>${item.topic}: ${item.question}</strong>
+            <span>${item.explanation}</span>
+          </div>
+        `).join('');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    soundBtn.addEventListener('click', () => {
+      soundOn = !soundOn;
+      soundBtn.textContent = soundOn ? '🔊' : '🔇';
+    });
+    startBtn.addEventListener('click', startGame);
+    nextBtn.addEventListener('click', nextQuestion);
+    restartBtn.addEventListener('click', startGame);
+    playerNameInput.addEventListener('keydown', e => { if (e.key === 'Enter') startGame(); });
+  </script>
+</body>
+</html>
