@@ -511,9 +511,9 @@
         <div class="hero">
           <div class="hero-grid">
             <div>
-              <div class="eyebrow">⚡ 17-question challenge</div>
+              <div class="eyebrow">⚡ 15-question challenge</div>
               <h2>Crack the number systems.</h2>
-              <p>Theory, conversions between binary, denary and hexadecimal, binary and hex addition and subtraction, BCD and overflow. Build a streak, earn XP and review every answer.</p>
+              <p>Theory, conversions between binary, denary and hexadecimal, binary and hex addition, BCD and overflow. Build a streak, earn XP and review every answer.</p>
             </div>
             <div class="start-panel">
               <label for="playerName">Player name</label>
@@ -524,7 +524,7 @@
         </div>
         <div class="features">
           <div class="feature"><strong>🔢 Conversions</strong><span>Practise every direction: binary ↔ denary ↔ hexadecimal.</span></div>
-          <div class="feature"><strong>➕ Arithmetic</strong><span>Binary &amp; hex addition and subtraction, overflow and BCD.</span></div>
+          <div class="feature"><strong>➕ Arithmetic</strong><span>Binary &amp; hex addition, overflow and BCD.</span></div>
           <div class="feature"><strong>💡 Instant feedback</strong><span>Every answer is worked through step by step.</span></div>
         </div>
       </div>
@@ -532,7 +532,7 @@
       <div class="game-area" id="gameArea">
         <div class="hud">
           <div class="progress-wrap">
-            <div class="progress-meta"><span id="questionCounter">Question 1 of 17</span><span id="playerLabel">Player</span></div>
+            <div class="progress-meta"><span id="questionCounter">Question 1 of 15</span><span id="playerLabel">Player</span></div>
             <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
           </div>
           <div class="stat-pill">⭐ <span id="scoreText">0 XP</span></div>
@@ -557,7 +557,7 @@
         <div class="trophy" id="trophyIcon">🏆</div>
         <h2 id="resultTitle">Quest Complete!</h2>
         <p id="resultMessage"></p>
-        <div class="score-ring" id="scoreRing"><span id="finalScore">0/17</span></div>
+        <div class="score-ring" id="scoreRing"><span id="finalScore">0/15</span></div>
         <div class="summary-grid">
           <div class="summary-box"><strong id="finalXp">0</strong><span>Total XP</span></div>
           <div class="summary-box"><strong id="bestStreak">0</strong><span>Best streak</span></div>
@@ -682,14 +682,6 @@
         explanation: "200 + 112 = 312. The full result is 100111000 (9 bits). An 8-bit register can only hold 0–255, so a carry out of the most significant bit means overflow has occurred."
       },
       {
-        topic: "Binary Subtraction",
-        difficulty: "Medium",
-        question: "Calculate 01010110 − 00011001 in binary.<span class='code'>  01010110\n- 00011001</span>",
-        options: ["00111101", "00111011", "01000101", "00111111"],
-        answer: 0,
-        explanation: "86 − 25 = 61. In binary 61 = 32 + 16 + 8 + 4 + 1 = 00111101."
-      },
-      {
         topic: "Hex Addition",
         difficulty: "Medium",
         question: "What is 2F + 14 in hexadecimal?",
@@ -704,14 +696,6 @@
         options: ["E0", "D0", "E1", "DF"],
         answer: 0,
         explanation: "7 + 9 = 16 = 10 in hex → write 0, carry 1. A (10) + 3 + carry 1 = 14 = E. Result E0. (Check: 167 + 57 = 224 = 0xE0.)"
-      },
-      {
-        topic: "Hex Subtraction",
-        difficulty: "Hard",
-        question: "What is 8C − 2F in hexadecimal?",
-        options: ["5D", "6D", "5F", "63"],
-        answer: 0,
-        explanation: "C (12) − F (15) needs a borrow: 12 + 16 − 15 = 13 = D, and the 8 becomes 7. Then 7 − 2 = 5. Result 5D. (Check: 140 − 47 = 93 = 0x5D.)"
       },
       {
         topic: "Binary Coded Decimal",
