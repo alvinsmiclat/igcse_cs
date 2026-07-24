@@ -76,7 +76,7 @@
 
     .cards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -109,6 +109,10 @@
 
     .quest-top.alevel {
       background: linear-gradient(135deg, #4338ca, #7c3aed);
+    }
+
+    .quest-top.numbers {
+      background: linear-gradient(135deg, #065f46, #10b981);
     }
 
     .badge {
@@ -165,6 +169,7 @@
 
     .play-btn.igcse { background: linear-gradient(135deg, var(--amber), #fb7185); }
     .play-btn.alevel { background: linear-gradient(135deg, #7c3aed, #06b6d4); }
+    .play-btn.numbers { background: linear-gradient(135deg, #059669, #06b6d4); }
 
     .footer-note {
       text-align: center;
@@ -173,7 +178,7 @@
       margin-top: 30px;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 900px) {
       .cards { grid-template-columns: 1fr; }
     }
   </style>
@@ -216,6 +221,22 @@
             <li>Programming &amp; software development</li>
           </ul>
           <div class="play-btn alevel">Play AS Level Quest →</div>
+        </div>
+      </a>
+
+      <a class="quest-card" href="numbersystems.html">
+        <div class="quest-top numbers">
+          <span class="badge">⚡ 20 questions</span>
+          <h2>Number Systems</h2>
+          <p>IGCSE focus topic · Binary, Denary &amp; Hexadecimal</p>
+        </div>
+        <div class="quest-body">
+          <ul>
+            <li>Conversions in every direction</li>
+            <li>Binary &amp; hex addition and subtraction</li>
+            <li>Two's complement, BCD &amp; shifts</li>
+          </ul>
+          <div class="play-btn numbers">Play Number Systems Quest →</div>
         </div>
       </a>
     </div>
