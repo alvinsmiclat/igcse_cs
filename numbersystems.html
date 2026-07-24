@@ -511,9 +511,9 @@
         <div class="hero">
           <div class="hero-grid">
             <div>
-              <div class="eyebrow">⚡ 20-question challenge</div>
+              <div class="eyebrow">⚡ 17-question challenge</div>
               <h2>Crack the number systems.</h2>
-              <p>Theory, conversions between binary, denary and hexadecimal, binary and hex addition and subtraction, two's complement, BCD, logical shifts and overflow. Build a streak, earn XP and review every answer.</p>
+              <p>Theory, conversions between binary, denary and hexadecimal, binary and hex addition and subtraction, BCD and overflow. Build a streak, earn XP and review every answer.</p>
             </div>
             <div class="start-panel">
               <label for="playerName">Player name</label>
@@ -524,7 +524,7 @@
         </div>
         <div class="features">
           <div class="feature"><strong>🔢 Conversions</strong><span>Practise every direction: binary ↔ denary ↔ hexadecimal.</span></div>
-          <div class="feature"><strong>➕ Arithmetic</strong><span>Binary &amp; hex addition and subtraction, overflow and two's complement.</span></div>
+          <div class="feature"><strong>➕ Arithmetic</strong><span>Binary &amp; hex addition and subtraction, overflow and BCD.</span></div>
           <div class="feature"><strong>💡 Instant feedback</strong><span>Every answer is worked through step by step.</span></div>
         </div>
       </div>
@@ -532,7 +532,7 @@
       <div class="game-area" id="gameArea">
         <div class="hud">
           <div class="progress-wrap">
-            <div class="progress-meta"><span id="questionCounter">Question 1 of 20</span><span id="playerLabel">Player</span></div>
+            <div class="progress-meta"><span id="questionCounter">Question 1 of 17</span><span id="playerLabel">Player</span></div>
             <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
           </div>
           <div class="stat-pill">⭐ <span id="scoreText">0 XP</span></div>
@@ -557,7 +557,7 @@
         <div class="trophy" id="trophyIcon">🏆</div>
         <h2 id="resultTitle">Quest Complete!</h2>
         <p id="resultMessage"></p>
-        <div class="score-ring" id="scoreRing"><span id="finalScore">0/20</span></div>
+        <div class="score-ring" id="scoreRing"><span id="finalScore">0/17</span></div>
         <div class="summary-grid">
           <div class="summary-box"><strong id="finalXp">0</strong><span>Total XP</span></div>
           <div class="summary-box"><strong id="bestStreak">0</strong><span>Best streak</span></div>
@@ -690,22 +690,6 @@
         explanation: "86 − 25 = 61. In binary 61 = 32 + 16 + 8 + 4 + 1 = 00111101."
       },
       {
-        topic: "Two's Complement",
-        difficulty: "Hard",
-        question: "Using two's complement, how is −40 represented in 8 bits?",
-        options: ["11011000", "11010111", "10101000", "11011001"],
-        answer: 0,
-        explanation: "+40 = 00101000. Invert the bits → 11010111, then add 1 → 11011000. (11010111 alone is only the one's complement.)"
-      },
-      {
-        topic: "Two's Complement",
-        difficulty: "Hard",
-        question: "An 8-bit two's complement number is 11111011. What is its denary value?",
-        options: ["−5", "−3", "−4", "−6"],
-        answer: 0,
-        explanation: "The leading 1 shows it is negative. Invert → 00000100 and add 1 → 00000101 = 5, so the value is −5."
-      },
-      {
         topic: "Hex Addition",
         difficulty: "Medium",
         question: "What is 2F + 14 in hexadecimal?",
@@ -736,14 +720,6 @@
         options: ["0100 0111", "0101 0111", "0100 0110", "0010 1111"],
         answer: 0,
         explanation: "In BCD each denary digit is written as its own 4-bit code: 4 = 0100 and 7 = 0111, giving 0100 0111. (Pure binary 47 would be 00101111.)"
-      },
-      {
-        topic: "Logical Shifts",
-        difficulty: "Medium",
-        question: "What is the result of a logical shift right by one place on the binary value 10011010?",
-        options: ["01001101", "11001101", "00110100", "01001100"],
-        answer: 0,
-        explanation: "Every bit moves one place right and a 0 enters from the left: 10011010 → 01001101. A logical right shift by one is equivalent to integer division by 2."
       },
       {
         topic: "Range of Values",
